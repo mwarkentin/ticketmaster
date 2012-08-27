@@ -1,0 +1,8 @@
+Flask==0.9
+Jinja2==2.6
+Werkzeug==0.8.3
+gunicorn==0.14.6
+newrelic==1.4.0.137
+redis==2.6.2
+requests==0.13.9
+wsgiref==0.1.2
