@@ -1,7 +1,7 @@
 ticketmaster
 ============
 
-Ticketmaster is a flickr-style ticket server implemented with Flask and Redis
+Ticketmaster is a [flickr-style ticket server](http://code.flickr.com/blog/2010/02/08/ticket-servers-distributed-unique-primary-keys-on-the-cheap/) implemented with Flask and Redis.
 
 Requirements
 ------------
@@ -12,16 +12,17 @@ Usage
 
 ### / GET
 
-Returns a list of ticket tapes which are in use.
+Returns a list of ticket tapes and their latest ticket id.
 
 ```
 {
   "ticket_tapes": [
-    "Tickets32",
-    "Tickets64",
-    "Photos",
-    "Accounts",
-    "Groups"
+    {
+      "Tickets32": 4
+    },
+    {
+      "Tickets64": 16
+    }
   ]
 }
 ```
@@ -31,8 +32,10 @@ Returns a list of ticket tapes which are in use.
 Generates a new ticket for `:ticket_tape`.
 
 ```
-{
-	"ticket_tape": "Tickets64",
-	"id": "72157623227190423"
-}
+>>> r = requests.post(url)
+>>> r.json
+{u'ticket_tape': u'Tickets64', u'id': 19}
+>>> r = requests.post(url)
+>>> r.json
+{u'ticket_tape': u'Tickets64', u'id': 20}
 ```
